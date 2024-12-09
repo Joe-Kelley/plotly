@@ -5,13 +5,13 @@ import plotly.express as px
 import plotly.io as pio
 
 # Import seasonal data
-df = nfl.import_seasonal_data([2023], 'REG')
+df = nfl.import_seasonal_data([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020], 'REG')
 
 # Clean the data
 seasonal_data = nfl.clean_nfl_data(df)
 
 # Import player information
-players = nfl.import_seasonal_rosters([2023])
+players = nfl.import_seasonal_rosters([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020])
 
 # Create mappings of player IDs to player names and positions
 player_id_to_name = pd.Series(players['player_name'].values, index=players['player_id']).to_dict()
@@ -30,14 +30,14 @@ qb_passing_yards = qb_data.groupby('player_name')['passing_yards'].sum().reset_i
 # Sort the data by passing yards in descending order
 qb_passing_yards = qb_passing_yards.sort_values(by='passing_yards', ascending=False)
 
-# Plot the data
-plt.figure(figsize=(10, 6))
-plt.bar(qb_passing_yards['player_name'], qb_passing_yards['passing_yards'], color='skyblue')
-plt.xlabel('Player Name')
-plt.ylabel('Total Passing Yards')
-plt.title('Total Passing Yards of All QBs in 2023')
-plt.xticks(rotation=90)
-plt.tight_layout()
+# Plot the data with Matplotlib
+# plt.figure(figsize=(10, 6))
+# plt.bar(qb_passing_yards['player_name'], qb_passing_yards['passing_yards'], color='skyblue')
+# plt.xlabel('Player Name')
+# plt.ylabel('Total Passing Yards')
+# plt.title('Total Passing Yards of All QBs in 2023')
+# plt.xticks(rotation=90)
+# plt.tight_layout()
 # plt.show()
 
 # Plot the data using Plotly

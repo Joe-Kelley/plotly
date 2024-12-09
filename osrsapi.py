@@ -2,6 +2,7 @@ import urllib.request, json
 from datetime import datetime
 import numpy as np
 import plotly.graph_objects as go
+import pandas as pd
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
@@ -68,10 +69,10 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUMEN])
 
 app.layout = dbc.Container([
     dbc.Row([
-        dbc.Col(html.H1("OSRS Item Price Over Time"), className="mb-4")
+        dbc.Col(html.H1("Item Price Over Time"), className="mb-4")
     ]),
     dbc.Row([
-        dbc.Col(html.P("Please search for an itemID and submit to view price history"), className="mb-4")
+        dbc.Col(html.P("Please search for an itemID and submit to view price history:"), className="mb-4")
     ]),
     dbc.Row([
         dbc.Col(dcc.Input(id='item-name-input', type='text', placeholder='Enter Item Name', className="mb-2"), width=1),

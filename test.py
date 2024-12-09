@@ -1,15 +1,25 @@
-import urllib.request, json
+# import plotly.graph_objects as go
+# import numpy as np
 
-print('Please wait.\nFetching Prices from website.')
+# x = np.linspace(-2, 2, 50)
+# y = np.linspace(-2, 2, 50)
+# x, y = np.meshgrid(x, y)
+# z = np.sin(np.sqrt(x**2 + y**2))
 
-baseUrl = 'http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item='
-items = [4151, 30]
-item_data = {}
+# fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+# fig.update_layout(title="3D Surface Plot", scene=dict(zaxis=dict(range=[-1, 1])))
+# fig.show()
 
-for item in items:
-    with urllib.request.urlopen(baseUrl + str(item)) as url:
-        data = json.loads(url.read().decode())
-        item_data[item] = data["item"]
 
-# Print the item data dictionary
-print(json.dumps(item_data, indent=4))
+import plotly.express as px
+import pandas as pd
+
+df = px.data.gapminder()
+
+fig = px.scatter(
+    df, x="gdpPercap", y="lifeExp", animation_frame="year", animation_group="country",
+    size="pop", color="continent", hover_name="country",
+    log_x=True, size_max=60
+)
+fig.update_layout(title="Gapminder Over Time")
+fig.show()
